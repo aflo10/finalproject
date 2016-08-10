@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Find Tutors! </title>
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+ 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+ 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+ 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+ 	<link rel = "stylesheet" href = "searchstyle.css">
+ 	<script>
+ 	      $( document ).ready(function() {
+ 	      	        function htmlEscape(str) {
+      return str
+          .replace(/&/g, '&amp;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;');
+  }
+
+  // I needed the opposite function today, so adding here too:
+  function htmlUnescape(str){
+      return str
+          .replace(/&quot;/g, '"')
+          .replace(/&#39;/g, "'")
+          .replace(/&lt;/g, '<')
+          .replace(/&gt;/g, '>')
+          .replace(/&amp;/g, '&');
+  }
+
+ 	 $( "#sub" ).click(function() {
+          var lst = {};
+          var fields = 0;
+      
+           if ( $('select#subjects').val() != null && $('select#subjects').val().length != 0)
+            lst["subjects"] = htmlEscape($('select#subjects').val());
+
+          else {
+            alert("Please choose at least one subject")
+            return
+          }
+
+          if ( $('select#subjects').val() != null && $('select#subjects').val().length != 0)
+            lst["subjects"] = htmlEscape($('select#subjects').val());
+
+          else {
+            alert("Please choose at least one subject")
+            return
+          }
+
+          if ( $('select#availability').val() != null && $('select#availability').val().length != 0)
+            lst["availability"] = htmlEscape($('select#availability').val());
+
+          else {
+            alert("Please choose at least one availability")
+            return
+          }
+
+          if ( $('input#school').val() != null && $('input#school').val().length != 0)
+            lst["school"] = $('input#school').val();
+
+          else {
+            alert("Please enter your school.")
+            return
+          }
+
+          console.log(lst)
+          $.ajax({
+            type: "POST",
+            url: "//localhost:8000/getuser",
+            data: lst,
+            success: function(response) {
+              console.log(response)
+              var stuff = $("#result_box").removeAttr('id');
+              console.log(stuff)  
+              var something = response.data;
+              console.log(something)
+              // .each(function(index) {
+
+              // 	console.log(index)
+              // });
+              for (var ee in something) {
+              	var dat = something[ee]
+              	var box = stuff.clone().show();
+              	box.find(".tutor_name").html(dat.first_name + " " + dat.last_name)
+              	box.find(".subjects").html(htmlUnescape(dat.subjects))
+              	box.find(".avail").html(htmlUnescape(dat.availability))
+              	box.find(".email").html(htmlUnescape(dat.email))
+              	box.find(".phone").html(htmlUnescape(dat.phone_number))
+              	box.insertAfter(".stuffbox:last");
+              	
+              }
+              // $(stuff).attr("style", "") 
+            }
+          });
+          return;
+        });
+
+
+
+      });
+
+ 	</script>
+</head>
+
+<body class="searchpage">
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+        <a class="navbar-brand " id="logobutton" href="Homepage.html">Focus</a>
+	    </div>
+	    <ul class="nav navbar-nav">
+
+	      <li><a href="profile.html" class="navbuttons">Tutor Sign Up</a></li>
+	      <li class = "active"> <a href = "searchpage.html" class="navbuttons">Find a Tutor!</a></li>   
+	      <li><a href="reference.html" class="navbuttons">Other Resources</a></li>
+        <li><a href="aboutuspage.html" class="navbuttons">About Us</a></li>   
+	    </ul>
+
+	  </div>
+	</nav>
+<br>
+<div class="row">
+	<div class = "col-sm-4" id = "search">
+		<h1 id = "search_header" class="school1">Search for a Tutor Here!</h1>
+		<form id = "form">
+			<!-- Subject you need help in:<br>
+  			<input type="text" name="subject" class = "input_box"><br> -->
+  	<h5 class="school">Subject You Need Help With:</h5>
+  		<div class="dropdown subject">
+    <select id="subjects" name="selectmultiple" class="form-control subject" >
+      <option value="English">English</option>
+      <option value="Math">Math</option>
+      <option value="Biology">Biology</option>
+      <option value="Chemistry">Chemistry</option>
+      <option value="Physics">Physics</option>
+      <option value="History">History</option>
+      <option value="Language">Language</option>
+      <option value="Computer Science and Technology">Computer Science and Technology</option>
+    </select>
+			</div>
+
+
+
+
+
+  			<h5 class = 'school'>Your School:</h5>
+  			<input id="school" type="text" name="school" class = "input_box inputbox">
+  			<h4 class="school">Your Availability: </h4>
+		  	<select id="availability" name="selectmultiple" class="form-control myprofile">
+			    <option value="Monday Morning">Monday Morning</option>
+          <option value="Monday Evening">Monday Afternoon</option>
+			    <option value="Monday Evening">Monday Evening</option>
+			    <option value="Tuesday Morning">Tuesday Morning</option>
+				<option value="Tuesday Afternoon">Tuesday Afternoon</option>
+      			<option value="Tuesday Evening">Tuesday Evening</option>
+      			<option value="Wednesday Morning">Wednesday Morning</option>
+      			<option value="Wednesday Afternoon">Wednesday Afternoon</option>
+      			<option value="Wednesday Evening">Wednesday Evening</option>
+      			<option value="Thursday Morning">Thursday Morning</option>
+      			<option value="Thursday Afternoon">Thursday Afternoon</option>
+      			<option value="Thursday Evening">Thursday Evening</option>                    
+      			<option value="Friday Morning">Friday Morning</option>
+      			<option value="Friday Afternoon">Friday Afternoon</option>
+      			<option value="Friday Evening">Friday Evening</option>                    
+      			<option value="Saturday Morning">Saturday Morning</option>
+      			<option value="Saturday Afternoon">Saturday Afternoon</option>
+      			<option value="Saturday Evening">Saturday Evening</option>                    
+      			<option value="Sunday Morning">Sunday Morning</option>
+      			<option value="Sunday Afternoon">Sunday Afternoon</option>
+      			<option value="Sunday Evening">Sunday Evening</option>
+		      
+		    </select>
+
+		    <br><br>
+  			<button id="sub" type="button" class="btn searchbutton button3">Search Tutors!</button>
+        <a class="btn btn-link searchbutton button3" href ="searchpage.html">New Search</a>
+
+		</form>
+
+	</div>
+
+ 	<div class="col-sm-8">
+ 		<h1 class='results'> Results </h1>
+ 		<div id = "all_results" class = "scroll">
+
+
+	 		<div class="stuffbox result_box" id = "result_box" style="display:none">
+		 		<div class = "col-sm-8 resultbox">
+		 			<h3 class="tutor_name"></h3>
+		 			<h4>Subjects: </h4>
+		 			<p class="subjects">List of Subjects</p> 			
+		 			<h4>Availability: </h4> 
+		 			<p class="avail"> list of availability </p>
+         
+	 			</div>
+	 			<div id = "contact_info"> 
+	 				<h2>  </h2>
+	 				<h4>Email: </h4>
+	 				<p class="email"> Tutor Email </p>
+	 				<h4>Phone Number: </h4>
+	 				<p class="phone">Tutor phone number</p>
+	 			</div>
+	 		</div>	
+
+	 	
+
+
+	 		</div>	
+ 		</div>
+ 	</div>
+ </body>
+</html>

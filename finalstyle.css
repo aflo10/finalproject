@@ -1,0 +1,234 @@
+.navbuttons{
+	font-family:'Bungee Inline', cursive;
+	font-size: 20px;
+	font-weight: bold;
+}
+#logobutton{
+	font-family:'Bungee Inline', cursive;
+	font-size: 30px;
+	font-weight: bold;
+	color: #0099ff;
+}
+
+
+
+/*Homepage style*/
+.homepage{
+	background-image: url(https://i.imgur.com/VscoDt0.jpg);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-color: #e6e6ff;
+
+}
+
+.intro{
+	text-align: center;
+    padding:1% 1% 1%;
+    font-size: 110px;
+    color:#b3d1ff;
+    opacity: 1;
+    font-family: 'Oswald', serif;
+
+}
+#welcome{
+	color: #f2f2f2;
+
+}
+.aboutus{
+	font-size: 65px;
+	color:#f2f2f2;
+	text-align: center;
+    padding:3%;
+    font-weight: 600;
+    font-family: 'Arimo', serif;
+}
+/*Dashboard style*/
+.user_dashboard{
+background-image: url(https://i.imgur.com/MuM6i7k.jpg);
+background-size: 100%;
+background-repeat: no-repeat;
+}
+
+.dashtitle{
+    font-size: 110px;
+    color:black;
+	font-family:'Bungee Inline', cursive;
+}
+.other{
+	color: black;
+	font-family:'Bungee Inline', cursive;
+	font-size: 40px;
+}
+/*Reference Style*/
+.reference {
+    background-image: url(https://i.imgur.com/djqBFxz.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.aboutref {
+    color: white;
+    text-align: center;
+	font-family:'Bungee Inline', cursive;
+    font-size: 70px;
+
+}
+
+.links{
+	font-family:'Bungee Inline', cursive;
+    font-size: 40px;
+    color: white;
+    margin-left: 50px
+}
+.refbutton {
+	background-color:darkcyan ; /*grey*/
+    border:black;
+    color: black;
+    padding: 12px 28px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+	font-family:'Bungee Inline', cursive;
+    font-size: 24px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    margin-left:75px;
+    
+}
+.button1:hover {
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    background-color:lightblue;
+    color: black;
+    border: 2px solid black;
+}
+/*Profile Style*/
+.submitbutton {
+	background-color: antiquewhite; 
+    border:black;
+    color: black;
+    padding: 12px 28px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-family: 'Amatic SC', cursive;
+    font-size: 24px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    margin-left:75px;
+    
+}
+
+.button2:hover {
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    background-color: antiquewhite;
+    color: black;
+    border: 2px solid black;
+}
+.profile{
+	background-image: url(https://i.imgur.com/NGmSeBT.jpg);
+	background-repeat: repeat-y;
+	background-size: 100%;
+}
+.myprofile{
+	font-family:'Bungee Inline', cursive;
+	font-size: 20px;
+}
+.myprofiletitle{
+	font-family:'Bungee Inline', cursive;
+	font-size: 40px;
+}
+.myprofile2{
+	margin-left: 100px;
+	margin-right: 100px;
+
+}
+/*Style for profile page*/
+.
+html body div #menu, html body div #menu a {
+	background-color: transparent; 
+	font-family: Georgia; 
+	color: #212e36;
+}
+
+body {background-color: #d8f0f4; 
+	background-image: url(https://i.imgur.com/SKA8rbg.jpg);
+}
+
+#container {width: 500px; 
+	margin: 25px;
+}
+
+#two, #three, #four, #five{background-color: #fff; 
+	padding: 6px; 
+	font-family: tahoma; 
+	color: #212e36; 
+	font-size: 12px;
+}
+#two, #three {width: 250px; 
+	text-align: left;
+}
+#four {text-align: justify;
+}
+
+.head {font-family: Georgia; color: black; font-size: 20px; text-align: left;}
+.heading {font-family: Georgia; color: white; font-size: 50px; text-align: left;}
+
+/*About Us Page*/
+.about{
+	background-image: url(https://i.imgur.com/tl76pTD.jpg);
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+.grouptitle {
+    color: black;
+    text-align: center;
+	font-family:'Bungee Inline', cursive;
+    font-size: 70px;
+
+
+}
+.group{
+	font-family:'Bungee Inline', cursive;
+    font-size: 40px;
+    color: black;
+    margin-left: 50px
+}
+.ourpages {
+	background-color:darkcyan ; /*grey*/
+    border:black;
+    color: black;
+    padding: 12px 28px;
+    text-align: center;
+    text-decoration: none;
+/*    display: inline-block;*/
+	font-family:'Bungee Inline', cursive;
+    font-size: 24px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    margin-left:100px;
+
+
+    
+}
+.button3:hover {
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    background-color:lightblue;
+    color: black;
+    border: 2px solid black;
+ }
+.row1{
+	margin-left: 315px;
+}
+.row2{
+	margin-left: 170px;
+}
+.row3{
+	margin-left: 375px;
+}

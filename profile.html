@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> My Profile </title>
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+ 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+ 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+ 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="finalstyle.css">
+ <script>
+    $( document ).ready(function() {
+
+      function htmlEscape(str) {
+    return str
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+}
+
+// I needed the opposite function today, so adding here too:
+function htmlUnescape(str){
+    return str
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;/g, "'")
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&amp;/g, '&');
+}
+
+
+      $( "#submit" ).click(function() {
+        console.log("SOMETHING")
+        var lst = {};
+        var fields = 0;
+        $("input").each(function(index){
+          if ($(this).val().replace(/\s/g, '') != "") {
+            lst[$(this).attr("id")] = htmlEscape($(this).val()) ;
+            fields++;
+          }
+          
+        });
+        if (fields < 6 ){
+          alert("Please fill out all the required fields!")
+          return;
+        }
+
+        if ( $('select#subjects').val() != null && $('select#subjects').val().length != 0)
+          lst["subjects"] = htmlEscape($('select#subjects').val().join());
+
+        else {
+          alert("Please choose at least one subject")
+          return
+        }
+
+        if ( $('select#availability').val() != null && $('select#availability').val().length != 0)
+          lst["availability"] = htmlEscape($('select#availability').val().join());
+
+        else {
+          alert("Please choose at least one availability")
+          return
+        }
+
+        if ( $('textarea').val() != null && $('textarea').val().length != 0)
+          lst["details"] = htmlEscape($('textarea').val());
+
+        else {
+          alert("Please describe yourself!")
+          return
+        }
+
+        console.log(lst)
+        $.ajax({
+          type: "POST",
+          url: "//localhost:8000/createuser",
+          data: lst,
+          success: function(response) {
+            if (response.status == 0)
+              alert("Success!")
+            else
+              alert("Failure!")
+          }
+        });
+      });
+
+
+
+    });
+    </script>
+
+</head>
+
+<body class="profile">
+<nav class="navbar navbar-default" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+        <a class="navbar-brand " id="logobutton" href="Homepage.html">Focus</a>
+  </div>
+
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="profile.html" class="navbuttons">Tutor Sign Up</a></li>
+      <li><a href = "searchpage.html" class="navbuttons">Find a Tutor!</a></li>   
+      <li><a href="reference.html" class="navbuttons">Other Resources</a></li>
+      <li><a href="aboutuspage.html" class="navbuttons">About Us</a></li>
+    </ul>
+    </ul>
+
+  </div>
+</nav>
+<br><br><br><br><br><br>
+<br><br><br><br><br><br>
+
+
+<div class="container-fluid myprofile2">
+<div class="row panel">
+	
+
+<form class="form-horizontal center_align">
+<fieldset>
+
+<!-- Form Name -->
+<center>
+<legend class="center_align myprofiletitle">Sign Up Here to be a Tutor</legend>
+</center>
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label myprofile" for="textinput">What is your First name?</label>  
+  <div class="col-md-4">
+  <input id="first_name" name="textinput" type="text" placeholder="First Name" class="form-control input-md myprofile" required="">
+  <span class="help-block"></span>
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-md-4 control-label myprofile" for="textinput">What is your Last name?</label>  
+  <div class="col-md-4">
+  <input id="last_name" name="textinput" type="text" placeholder="Last Name" class="form-control input-md myprofile" required="">
+  <span class="help-block"></span>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label myprofile" for="textinput">What is your email?</label>  
+  <div class="col-md-4">
+  <input id="email" name="textinput" type="text" placeholder="Email" class="form-control input-md myprofile" required="">
+  <span class="help-block myprofile">Don't worry we won't spam you</span>  
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-md-4 control-label myprofile" for="textinput">What is your phone number?</label>  
+  <div class="col-md-4">
+  <input id="phone_number" name="textinput" type="text" placeholder="Phone Number" class="form-control input-md myprofile" required="">
+  <span class="help-block myprofile"></span>  
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label myprofile" for="textinput">Which city do you live in?</label>  
+  <div class="col-md-4">
+  <input id="city" name="textinput" type="text" placeholder="City" class="form-control input-md myprofile" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label myprofile" for="textinput">What school do you go to?</label>  
+  <div class="col-md-4">
+  <input id="school" name="textinput" type="text" placeholder="School" class="form-control input-md myprofile" required="">
+  <span class="help-block myprofile">Please write your school's full name</span>  
+  </div>
+</div>
+
+<!-- Select Multiple -->
+<div class="form-group">
+  <label class="col-md-4 control-label myprofile" for="selectmultiple">Which subjects would you like to tutor?</label>
+  <div class="col-md-4">
+    <select id="subjects" name="selectmultiple" class="form-control myprofile" multiple="multiple">
+      <option value="English">English</option>
+      <option value="Math">Math</option>
+      <option value="Biology">Biology</option>
+      <option value="Chemistry">Chemistry</option>
+      <option value="Physics">Physics</option>
+      <option value="History">History</option>
+      <option value="Language">Language</option>
+      <option value="Computer Science and Technology">Computer Science and Technology</option>
+    </select>
+  </div>
+</div>
+
+<!-- Text input-->
+
+
+<!-- Select Multiple -->
+<div class="form-group">
+  <label class="col-md-4 control-label myprofile" for="selectmultiple">Which days are best for you?</label>
+  <div class="col-md-4">
+    <select id="availability" name="selectmultiple" class="form-control myprofile" multiple="multiple">
+      <option value="Monday Morning">Monday Morning</option>
+      <option value="Monday Afternoon">Monday Afternoon</option>
+      <option value="Monday Evening">Monday Evening</option>
+      <option value="Tuesday Morning">Tuesday Morning</option>
+      <option value="Tuesday Afternoon">Tuesday Afternoon</option>
+      <option value="Tuesday Evening">Tuesday Evening</option>
+      <option value="Wednesday Morning">Wednesday Morning</option>
+      <option value="Wednesday Afternoon">Wednesday Afternoon</option>
+      <option value="Wednesday Evening">Wednesday Evening</option>
+      <option value="Thursday Morning">Thursday Morning</option>
+      <option value="Thursday Afternoon">Thursday Afternoon</option>
+      <option value="Thursday Evening">Thursday Evening</option>                    
+      <option value="Friday Morning">Friday Morning</option>
+      <option value="Friday Afternoon">Friday Afternoon</option>
+      <option value="Friday Evening">Friday Evening</option>                    
+      <option value="Saturday Morning">Saturday Morning</option>
+      <option value="Saturday Afternoon">Saturday Afternoon</option>
+      <option value="Saturday Evening">Saturday Evening</option>                    
+      <option value="Sunday Morning">Sunday Morning</option>
+      <option value="Sunday Afternoon">Sunday Afternoon</option>
+      <option value="Sunday Evening">Sunday Evening</option>
+          
+<!--       <option value="Monday Morning">Monday</option>
+      <option value="Tuesday Morning">Tuesday</option>
+      <option value="Wednesday Evening">Wednesday</option>
+      <option value="Thursday Morning">Thursday</option>
+      <option value="Friday Evening">Friday</option>
+      <option value="Saturday Evening">Saturday</option>
+      <option value="Sunday Morning">Sunday</option> -->
+    </select>
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label myprofile" for="textarea">Details About Yourself</label>
+  <div class="col-md-4">                     
+    <textarea class="form-control" id="details" name="textarea"></textarea>
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-md-4 control-label" for="filebutton">Profile Picture (optional)</label>
+  <div class="col-md-4">
+    <input id="img_url" name="filebutton" class="input-file" type="file">
+  </div>
+</div>
+<center>
+<button type="button" class="btn btn-success btn-lg button_align myprofile submitbutton button2" id="submit">Submit</button>
+
+</center>
+<br>
+</fieldset>
+</form>
+
+</div>
+</div>
+<br><br><br><br><br><br>
+<br><br><br>
+
+</body>
